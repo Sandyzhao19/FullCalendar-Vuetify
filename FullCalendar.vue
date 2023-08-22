@@ -113,31 +113,18 @@ export default defineComponent({
     },
 
     changeCalendarView(viewStr: string) {
-      if (viewStr === "Month") {
-        const calendarInstance = this.$refs.fullCalendar as InstanceType<
-          typeof FullCalendar
-        >;
-        calendarInstance.getApi().changeView("dayGridMonth");
-        this.calendarTitle = calendarInstance.getApi().view.title;
-      } else if (viewStr === "Week") {
-        const calendarInstance = this.$refs.fullCalendar as InstanceType<
-          typeof FullCalendar
-        >;
-        calendarInstance.getApi().changeView("timeGridWeek");
-        this.calendarTitle = calendarInstance.getApi().view.title;
-      } else if (viewStr === "Day") {
-        const calendarInstance = this.$refs.fullCalendar as InstanceType<
-          typeof FullCalendar
-        >;
-        calendarInstance.getApi().changeView("timeGridDay");
-        this.calendarTitle = calendarInstance.getApi().view.title;
-      } else if (viewStr === "List") {
-        const calendarInstance = this.$refs.fullCalendar as InstanceType<
-          typeof FullCalendar
-        >;
-        calendarInstance.getApi().changeView("listWeek");
-        this.calendarTitle = calendarInstance.getApi().view.title;
+      const calendarInstance = this.$refs.fullCalendar as InstanceType<typeof FullCalendar>;
+      const calendarApi = calendarInstance.getApi();
+      if (viewStr === 'Month') {
+        calendarApi.changeView('dayGridMonth');
+      } else if (viewStr === 'Week') {
+        calendarApi.changeView('timeGridWeek');
+      } else if (viewStr === 'Day') {
+        calendarApi.changeView('timeGridDay');
+      } else if (viewStr === 'List') {
+        calendarApi.changeView('listWeek');
       }
+      this.calendarTitle = calendarApi.view.title;
     },
   },
 });
